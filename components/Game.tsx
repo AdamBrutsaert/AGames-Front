@@ -1,17 +1,19 @@
 import { FunctionComponent, useEffect } from "react";
-import { Application } from "pixi.js";
+import SquareGame from "games/SquareGame/SquareGame";
+import Player, { BLUE, PURPLE } from "games/common/Player";
 
-const application = new Application({
-  width: 600,
-  height: 600,
-  backgroundColor: 0xff00ff,
-});
+let squareGame: SquareGame | undefined;
 
 const Game: FunctionComponent = () => {
   useEffect(() => {
-    document.getElementById("game")?.appendChild(application.view);
+    if (!squareGame) {
+      squareGame = new SquareGame([new Player(BLUE), new Player(PURPLE)]);
+    }
+    if (document.getElementById("squareGame")?.children.length == 0) {
+      document.getElementById("squareGame")?.appendChild(squareGame.getView());
+    }
   });
-  return <div id="game"></div>;
+  return <div id="squareGame"></div>;
 };
 
 export default Game;
