@@ -1,5 +1,6 @@
 import { SquareGameOptions } from "./SquareGame";
 import { Container, Graphics, InteractionEvent } from "pixi.js";
+import Player from "games/common/Player";
 
 type Lines = (number | undefined)[];
 type Cells = (number | undefined)[];

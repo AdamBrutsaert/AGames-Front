@@ -10,7 +10,6 @@ export type SquareGameOptions = {
 };
 
 class SquareGame {
-  private players: Player[];
   private app: Application;
 
   constructor(
@@ -22,8 +21,6 @@ class SquareGame {
       line_thickness: 4,
     }
   ) {
-    this.players = players;
-
     const width =
       options.columns * options.cell_size +
       (options.columns - 1) * options.line_thickness;

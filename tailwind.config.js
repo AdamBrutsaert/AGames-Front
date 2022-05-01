@@ -2,13 +2,19 @@ module.exports = {
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        background: "url('/background.png')",
+      },
       colors: {
-        darkGray: {
-          700: "#212529",
-          800: "#17191c",
-        },
+        purple: "#7b3c96",
+        mauve: "#2a2240",
+        wine: "#1a1426",
+        crimson: "#722e3c",
+      },
+      spacing: {
+        "80vh": "80vh",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 };
