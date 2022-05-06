@@ -1,22 +1,26 @@
-import { FormEventHandler, FunctionComponent, useState } from "react";
-import Frame from "./Frame";
+import { FormEvent, FunctionComponent, useState } from "react";
+
+import Frame from "src/components/Frame";
 
 // TODO: Use Next/Image instead of img
 
 interface IndexFrameProps {
   button: string;
-  onSubmit: FormEventHandler;
+  onSubmit: (e: FormEvent<Element>, pseudo: string, avatar: string) => void;
+  failedConnection: boolean;
 }
 
 const IndexFrame: FunctionComponent<IndexFrameProps> = ({
   button,
   onSubmit,
+  failedConnection,
 }) => {
+  const [pseudo, setPseudo] = useState<string>("");
   const [avatar, setAvatar] = useState<string>("/avatar.png");
 
   return (
     <Frame className="flex divide-x-2 divide-white divide-opacity-10 py-8">
-      <div className="flex w-96 flex-col items-center py-2 px-12">
+      <div className="relative flex w-96 flex-col items-center py-2 px-12">
         <img
           src="/logo.png"
           alt="Logo"
@@ -30,7 +34,9 @@ const IndexFrame: FunctionComponent<IndexFrameProps> = ({
           profil personnalisé. Bon jeu et merci de votre visite !
         </p>
         <form
-          onSubmit={onSubmit}
+          onSubmit={(e) => {
+            onSubmit(e, pseudo, avatar);
+          }}
           className="mt-8 flex w-full flex-grow flex-col"
         >
           <label
@@ -43,11 +49,20 @@ const IndexFrame: FunctionComponent<IndexFrameProps> = ({
             type="text"
             id="pseudo"
             name="pseudo"
+            value={pseudo}
+            onChange={(e) => {
+              setPseudo(e.target.value);
+            }}
             className="mt-2 h-8 w-full rounded border-2 border-white bg-mauve px-2 py-0.5 text-white caret-white outline-none"
           />
           <button className="mt-6 self-center rounded bg-crimson py-1 px-2 font-semibold uppercase tracking-wider text-white">
             {button}
           </button>
+          {failedConnection && (
+            <div className="absolute left-0 right-0 -bottom-5 text-center text-sm text-crimson">
+              Échec de la connection
+            </div>
+          )}
         </form>
       </div>
       <div className="flex w-96 flex-col items-center px-12 py-2">

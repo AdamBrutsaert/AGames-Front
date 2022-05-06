@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
-import Frame from "./Frame";
+
+import Frame from "src/components/Frame";
 
 // TODO: implement my own scrollbar classes because tailwind-scrollbar lacks of functionnality (rounding, thickness, opacity...)
 
@@ -36,7 +37,12 @@ const LobbySettings: FunctionComponent = () => {
             &gt; Règles
           </h3>
           <p className="mt-2 text-justify leading-5 text-white text-opacity-80">
-            Blabla
+            Ici, jouez au <span className="font-semibold">jeu des carrés</span>,
+            le principe est simple. Dans une zone quadrillée, chaque joueur
+            devra, tour à tour, placer un bâton sur une des arêtes de manière à
+            former le plus de carrés possibles, après formation de carré, le
+            joueur rejoue. La partie se termine quand la zone est entièrement
+            remplie. Le joueur avec le plus de carré l'emporte.
           </p>
         </div>
       </div>

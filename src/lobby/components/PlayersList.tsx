@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
-import Frame from "./Frame";
+
+import Frame from "src/components/Frame";
 
 interface PlayerProps {
   pseudo: string;
